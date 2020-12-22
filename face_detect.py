@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 # Data
 path_data = os.path.join(os.getcwd(), "data")
 path_image = os.path.join(path_data, "abba.png")
-path_cascade = os.path.join(path_data, "haarcascade_frontalface_default.xml")
+path_cascade = os.path.join("haar_cascade", "haarcascade_frontalface_alt.xml")
 path_model = os.path.join(os.getcwd(), "models", "gender_detection.model")
 
 # Create the haar cascade
