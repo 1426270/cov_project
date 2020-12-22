@@ -60,7 +60,7 @@ for (x, y, w, h) in faces:
 
     # write label and confidence above face rectangle
     cv2.putText(image, label, (x, Y), cv2.FONT_HERSHEY_SIMPLEX,
-                0.7, (0, 255, 0), 2)
+                0.5, (0, 255, 0), 2)
 
 
 
