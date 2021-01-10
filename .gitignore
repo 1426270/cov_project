@@ -131,3 +131,6 @@ dmypy.json
 
 .idea
 data/gender_dataset_face/
+data/Fam4a/
+data/Group2a/
+data/Fam4a_used_out
