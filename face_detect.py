@@ -9,10 +9,14 @@
 # https://github.com/ageitgey/face_recognition
 # https://github.com/davisking/dlib/blob/master/python_examples/face_detector.py
 
+# body classifier: https://github.com/nghorbani/homogenus
+
+
 # todo: check gender classification for all faces
 # todo: try different haarcascade.xml files
 # todo: try different classifier models?
-
+# todo: openpose?
+# todo: caffe !!! https://gist.github.com/GilLevi/c9e99062283c719c03de
 
 import os
 import cv2
