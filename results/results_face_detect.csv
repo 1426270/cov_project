@@ -1,0 +1,5 @@
+modes,val
+openCV_HaarCascade,63.0
+openCV_Caffe,51.0
+dlib_HOG,84.0
+dlib_CNN,86.0
