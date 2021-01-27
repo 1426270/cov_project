@@ -63,7 +63,7 @@ if overwrite:
 
 
 path_cascade = os.path.join("haar_cascade", "haarcascade_frontalface_alt.xml")
-path_keras_model = os.path.join(os.getcwd(), "models", "gender_detection.model")
+path_keras_model = os.path.join(os.getcwd(), "models", "gender_detection_own.model")
 path_meta = os.path.join(path_images, "Fam4a_used_meta.csv")
 
 # read meta data
