@@ -34,7 +34,7 @@ import matplotlib.pyplot as plt
 # 1: open-cv dnn + caffe
 # 2: dlib hog
 # 3: dlib cnn
-mode = 3
+mode = 0
 modes = ['openCV - HaarCascade', 'openCV - Caffe', 'dlib - HOG', 'dlib - CNN']
 
 overwrite = False # overwrite paths in metadata (only True if detection algorithms changed) --> False saves processing time!
@@ -130,6 +130,7 @@ for i, row in df_meta.iterrows():
 
     path_output_img = df_meta[f'path_{mode}'][i]
 
+    genders = ""
     # Draw a rectangle around the faces and classify
     if len(faces_sorted) > 0:
         title = "|"
@@ -145,33 +146,37 @@ for i, row in df_meta.iterrows():
             face_crop = img_to_array(face_crop)
             face_crop = np.expand_dims(face_crop, axis=0)
 
-            # apply gender detection on face
-            conf = model.predict(face_crop)[0]
-    
-            # get label with max accuracy
-            idx = np.argmax(conf)
-            label = classes[idx]
-    
-            if len(faces_sorted) == row["number_of_faces"]:
-                label = " {:.2f}% {} ({}) |".format(conf[idx] * 100, label, row["genders"][j])
-            else:
-                label = " {:.2f}% {} |".format( conf[idx] * 100, label)
-            if j == 3:
-                label = label + "\n"
-    
-            # write label and confidence above face rectangle
-            # cv2.rectangle(image, (x, y-30), (x+w, y), (255, 255, 255), -1)
-            # Y = y - 10 if y - 10 > 10 else y + 10
-            # cv2.putText(image, label, (x, Y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
-            title += label
+            if "correct_number_of_faces" in path_output_img:
+                # apply gender detection on face
+                conf = model.predict(face_crop)[0]
 
+                # get label with max accuracy
+                idx = np.argmax(conf)
+                label = classes[idx]
+                genders += label
+
+                if len(faces_sorted) == row["number_of_faces"]:
+                    label = " {:.2f}% {} ({}) |".format(conf[idx] * 100, label, row["genders"][j])
+                else:
+                    label = " {:.2f}% {} |".format( conf[idx] * 100, label)
+                if j == 3:
+                    label = label + "\n"
+
+                # write label and confidence above face rectangle
+                # cv2.rectangle(image, (x, y-30), (x+w, y), (255, 255, 255), -1)
+                # Y = y - 10 if y - 10 > 10 else y + 10
+                # cv2.putText(image, label, (x, Y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
+                title += label
+
+    df_meta[f'genders_{mode}'][i] = genders
     plt.imshow(image)
     plt.title(title, fontsize=9)
     plt.savefig(path_output_img)
     plt.close()
 
+
+df_meta.to_csv(path_meta)
 if write:
-    df_meta.to_csv(path_meta)
     np.save(path_face_locs, loc_list, allow_pickle=True)
     df_results['val'][mode] = correct_number
     df_results.to_csv(path_results_face_detect)
