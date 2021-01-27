@@ -140,7 +140,7 @@ for i, row in df_meta.iterrows():
             face_crop = np.copy(image[y:y+h, x:x+w])
 
             # preprocessing for gender detection model
-            face_crop = cv2.resize(face_crop, (96, 96))
+            face_crop = cv2.resize(face_crop, (50, 50))
             face_crop = face_crop.astype("float") / 255.0
             face_crop = img_to_array(face_crop)
             face_crop = np.expand_dims(face_crop, axis=0)
