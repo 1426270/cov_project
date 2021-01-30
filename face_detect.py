@@ -79,6 +79,7 @@ for i, row in df_meta.iterrows():
     print(f"Image {i + 1} of {len(df_meta)}")
     # Read the image
     image = cv2.imread(os.path.join(path_images, row["filename"]))
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     if df_meta[f'path_{mode}'].isnull().values.any() or overwrite:
