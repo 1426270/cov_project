@@ -3,6 +3,7 @@ import pandas as pd
 
 path_meta = os.path.join(os.getcwd(), "data", "Fam4a_used", "Fam4a_used_meta.csv")
 df_meta = pd.read_csv(path_meta)
+#df_col = df_meta.dropna(subset=["genders_0", "genders_1", "genders_2", "genders_3"])
 
 for col in [f"genders_{i}" for i in range(4)]:
     df_col = df_meta.dropna(subset=[col])

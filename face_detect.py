@@ -1,14 +1,10 @@
 # https://realpython.com/face-recognition-with-python/
 # training data: https://github.com/arunponnusamy/gender-detection-keras/releases/download/v0.1/gender_dataset_face.zip
 # https://github.com/arunponnusamy/gender-detection-keras/blob/master/detect_gender.py
-
 # https://data-flair.training/blogs/python-project-real-time-human-detection-counting/
-
 # data: http://chenlab.ece.cornell.edu/people/Andy/ImagesOfGroups.html        !!!!!!!!!!!!!!!!
-
 # https://github.com/ageitgey/face_recognition
 # https://github.com/davisking/dlib/blob/master/python_examples/face_detector.py
-
 # body classifier: https://github.com/nghorbani/homogenus
 
 
@@ -34,7 +30,7 @@ import matplotlib.pyplot as plt
 # 1: open-cv dnn + caffe
 # 2: dlib hog
 # 3: dlib cnn
-mode = 0
+mode = 3
 modes = ['openCV - HaarCascade', 'openCV - Caffe', 'dlib - HOG', 'dlib - CNN']
 
 overwrite = False # overwrite paths in metadata (only True if detection algorithms changed) --> False saves processing time!
@@ -63,7 +59,7 @@ if overwrite:
 
 
 path_cascade = os.path.join("haar_cascade", "haarcascade_frontalface_alt.xml")
-path_keras_model = os.path.join(os.getcwd(), "models", "gender_detection_own.model")
+path_keras_model = os.path.join(os.getcwd(), "models", "own_model_own_data.model")
 path_meta = os.path.join(path_images, "Fam4a_used_meta.csv")
 
 # read meta data
@@ -74,7 +70,7 @@ model = load_model(path_keras_model)
 classes = ['m', 'f']
 
 faces = None
-correct_number = 0
+correct_number = 2
 for i, row in df_meta.iterrows():
     print(f"Image {i + 1} of {len(df_meta)}")
     # Read the image
