@@ -6,8 +6,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from PIL import Image
 
-
-
 # data paths
 path_images = os.path.join(os.getcwd(), "data", "train_data_in")
 path_output = os.path.join(os.getcwd(), "data", "train_data_out")

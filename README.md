@@ -1,1 +1,3 @@
-# cov_project
+# Gender Classification
+
+In order to predict gender of people shown in images four different face detection methods (Haar Cascade,Caffe,  Convolutional  Neural  Network  (CNN)  and  Histogram  of Oriented Gradients (HOG)) followed by classification via a CNN(Python/Keras)  were  used.  For  detecting  faces,  the  best  results were  achieved  by  using  HOG.  In  the  end  an  accuracy  of  about 76% correct classified people was reached. Excluding kids fromthe  final  analysis  the  accuracy  could  be  increased  up  to  92%.This  leads  back  to  the  lack  of  photos  of  kids  in  the  training dataset.

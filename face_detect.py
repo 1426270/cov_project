@@ -30,10 +30,10 @@ import matplotlib.pyplot as plt
 # 1: open-cv dnn + caffe
 # 2: dlib hog
 # 3: dlib cnn
-mode = 3
+mode = 1
 modes = ['openCV - HaarCascade', 'openCV - Caffe', 'dlib - HOG', 'dlib - CNN']
 
-overwrite = False # overwrite paths in metadata (only True if detection algorithms changed) --> False saves processing time!
+overwrite = True # overwrite paths in metadata (only True if detection algorithms changed) --> False saves processing time!
 write = False # gets set by code, don't change to True!
 
 # data paths
@@ -91,11 +91,9 @@ for i, row in df_meta.iterrows():
             if len(faces_detected) == 0:
                 faces = np.array([])
             else:
-                faces_detected = np.array(faces_detected)
-                faces = faces_detected.copy()
-                faces = faces.clip(min=0)
-                faces[:,2] = faces_detected[:,2] - faces_detected[:,0]
-                faces[:,3] = faces_detected[:,3] - faces_detected[:,1]
+                faces = np.array(faces_detected)
+                faces[:,2] = faces[:,2] - faces[:,0]
+                faces[:,3] = faces[:,3] - faces[:,1]
         if mode == 2:
             detector = dlib.get_frontal_face_detector()
             dets = detector(image, 1)
@@ -132,7 +130,7 @@ for i, row in df_meta.iterrows():
     if len(faces_sorted) > 0:
         title = "|"
         for j, (x, y, w, h) in enumerate(faces_sorted):
-            cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
+            cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
             # crop the detected face region
             face_crop = np.copy(image[y:y+h, x:x+w])
@@ -143,6 +141,7 @@ for i, row in df_meta.iterrows():
             face_crop = img_to_array(face_crop)
             face_crop = np.expand_dims(face_crop, axis=0)
 
+            '''
             if "correct_number_of_faces" in path_output_img:
                 # apply gender detection on face
                 conf = model.predict(face_crop)[0]
@@ -164,7 +163,7 @@ for i, row in df_meta.iterrows():
                 # Y = y - 10 if y - 10 > 10 else y + 10
                 # cv2.putText(image, label, (x, Y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
                 title += label
-
+            '''
     df_meta[f'genders_{mode}'][i] = genders
     plt.imshow(image)
     plt.title(title, fontsize=9)

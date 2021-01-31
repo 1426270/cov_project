@@ -1,5 +1,5 @@
-,Unnamed: 0,Unnamed: 0.1,Unnamed: 0.1.1,Unnamed: 0.1.1.1,Unnamed: 0.1.1.1.1,Unnamed: 0.1.1.1.1.1,modes,val
-0,0,0,0,0,0,0,openCV_HaarCascade,63.0
-1,1,1,1,1,1,1,openCV_Caffe,51.0
-2,2,2,2,2,2,2,dlib_HOG,84.0
-3,3,3,3,3,3,3,dlib_CNN,86.0
+,Unnamed: 0,Unnamed: 0.1,Unnamed: 0.1.1,Unnamed: 0.1.1.1,Unnamed: 0.1.1.1.1,Unnamed: 0.1.1.1.1.1,Unnamed: 0.1.1.1.1.1.1,modes,val
+0,0,0,0,0,0,0,0,openCV_HaarCascade,63.0
+1,1,1,1,1,1,1,1,openCV_Caffe,45.0
+2,2,2,2,2,2,2,2,dlib_HOG,84.0
+3,3,3,3,3,3,3,3,dlib_CNN,86.0
